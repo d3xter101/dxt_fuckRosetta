@@ -1,0 +1,30 @@
+const socket = new WebSocket("ws://localhost:3000");
+
+socket.addEventListener("message", function (event) {
+  if (event.data === "reload") {
+    alert("A new version is available. Reloading...");
+    window.location.reload();
+  }
+});
+
+fetch("/api/version")
+  .then((response) => response.json())
+  .then((data) => {
+    const latestVersion = data.version;
+    const currentVersion = "1.0.0";
+
+    if (latestVersion !== currentVersion) {
+      alert(`🚨 Mise à jour disponible : version ${data.version}.
+       https://github.com/d3xter`);
+    }
+  })
+  .catch((error) => {
+    console.error("Error checking version:", error);
+  });
+
+ws.on("message", (message) => {
+  const data = JSON.parse(message);
+  if (data.type === "version_update" && data.version !== currentVersion) {
+    console.log(`New version available: ${data.version}`);
+  }
+});
