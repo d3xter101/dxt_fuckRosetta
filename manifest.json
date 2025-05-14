@@ -1,0 +1,26 @@
+{
+
+  "name": "D3XTER",
+  "description": "Quietely track your progress in Rosetta Stone.",
+  "author": "D3XTER",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "./dist/worker.esm.js"
+  },
+  "action": {
+    "default_popup": "/static/index.html",
+    "default_icon": "/static/rosetta.png",
+    "default_title": "D3XTER"
+  },
+  "permissions": ["storage", "webRequest", "webRequestBlocking", "tabs", "scripting", "activeTab"],
+  "icons": {
+    "520": "/static/rosetta.png"
+  },
+  "host_permissions": [
+    "*://totale.rosettastone.com/",
+    "*://tracking.rosettastone.com/",
+    "*://learn.rosettastone.com/",
+    "*://gaia-server.rosettastone.com/"
+  ]
+}
